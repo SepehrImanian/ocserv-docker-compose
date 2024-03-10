@@ -1,0 +1,21 @@
+version: '3.0'
+services:
+  ocserv:
+    image: tommylau/ocserv
+    restart: always
+    container_name: ocserv
+    privileged: true
+    hostname: vpn.es.local
+    ports:
+        - '4443:4443/udp'
+        - '4443:4443'
+    volumes:
+        - './:/etc/ocserv'
+    environment:
+        - CA_CN=ca.es.local
+        - CA_ORG=es.local
+        - CA_DAYS=3650
+        - SRV_CN=vpn.es.local
+        - SRV_ORG=es.local
+        - SRV_DAYS=365
+        - NO_TEST_USER=1
